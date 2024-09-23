@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.myorg.userservice.security.models.Client;
 import org.springframework.security.jackson2.SecurityJackson2Modules;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
@@ -24,6 +25,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 @Component
+@JsonDeserialize
 public class JpaRegisteredClientRepository implements RegisteredClientRepository {
 	private final ClientRepository clientRepository;
 	private final ObjectMapper objectMapper = new ObjectMapper();

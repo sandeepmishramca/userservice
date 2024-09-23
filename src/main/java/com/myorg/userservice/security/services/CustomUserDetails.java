@@ -1,23 +1,27 @@
 package com.myorg.userservice.security.services;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.myorg.userservice.models.Role;
 import com.myorg.userservice.models.User;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
+@JsonDeserialize
+@Setter
+@NoArgsConstructor
 public class CustomUserDetails implements UserDetails {
     private String username;
     private String password;
-    private Collection<? extends GrantedAuthority> authorities;
+    private List<GrantedAuthority> authorities;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean enabled;
-    private List<GrantedAuthority> grantedAuthorities;
 
     public CustomUserDetails(User user) {
         this.username = user.getEmail();
@@ -25,14 +29,15 @@ public class CustomUserDetails implements UserDetails {
         this.accountNonExpired = true;
         this.accountNonLocked = true;
         this.credentialsNonExpired = true;
-        this.grantedAuthorities = new ArrayList<GrantedAuthority>();
+        this.authorities = new ArrayList<GrantedAuthority>();
         for(Role role : user.getRoles()) {
-            grantedAuthorities.add(new CustomGrantedAuthority(role));
+            authorities.add(new CustomGrantedAuthority(role));
         }
+        this.enabled = true;
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return grantedAuthorities;
+        return authorities;
     }
 
     @Override
