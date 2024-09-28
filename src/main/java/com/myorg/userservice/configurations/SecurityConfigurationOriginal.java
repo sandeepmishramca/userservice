@@ -28,12 +28,12 @@ public class SecurityConfigurationOriginal {
 //
 //        return http.build();
 //    }
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        StrictHttpFirewall firewall = new StrictHttpFirewall();
-        firewall.setAllowBackSlash(true);
-        firewall.setAllowSemicolon(true);
-        return (web) -> web.httpFirewall(firewall);
-    }
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        StrictHttpFirewall firewall = new StrictHttpFirewall();
+//        firewall.setAllowBackSlash(true);
+//        firewall.setAllowSemicolon(true);
+//        return (web) -> web.httpFirewall(firewall);
+//    }
 
 }

@@ -25,29 +25,30 @@ class UserserviceApplicationTests {
     void contextLoads() {
     }
 
-//    @Test
-//    public void testOAuth(){
-//        //just to add client info in client table
+    @Test
+    public void testOAuth(){
+        //just to add client info in client table
 //        /*
 //
 //        Callback URL: https://oauth.pstmn.io/v1/callback
 //        Auth URL: http://localhost:9000/oauth2/authorize
 //        Access Token URL: http://localhost:9000/oauth2/token
-//         */
-//        RegisteredClient oidcClient = RegisteredClient.withId(UUID.randomUUID().toString())
-//				.clientId("cred-client")
-//				.clientSecret(bCryptPasswordEncoder.encode("secret"))
-//				.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
-//				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-//				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-//				.redirectUri("https://oauth.pstmn.io/v1/callback")
-//				.postLogoutRedirectUri("http://127.0.0.1:8080/product")
-//				.scope(OidcScopes.OPENID)
-//				.scope(OidcScopes.PROFILE)
-//                .scope("USEREMAIL")
-//				.clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
-//				.build();
-//        registeredClientRepository.save(oidcClient);
-//    }
+
+        RegisteredClient oidcClient = RegisteredClient.withId(UUID.randomUUID().toString())
+                .clientId("cred-client")
+                .clientSecret(bCryptPasswordEncoder.encode("secret"))
+                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+                .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+                .redirectUri("https://oauth.pstmn.io/v1/callback")
+                .postLogoutRedirectUri("http://127.0.0.1:8080/")
+                .scope(OidcScopes.OPENID)
+                .scope(OidcScopes.PROFILE)
+                .scope("USEREMAIL")
+                .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
+                .build();
+
+        registeredClientRepository.save(oidcClient);
+    }
 
 }
